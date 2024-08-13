@@ -167,3 +167,138 @@ footer h4 {
 .custom-file-input:active::before {
     color: var(--main-bg);
 }
+/*select flight*/
+
+.page-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.select-flight {
+    display: flex;
+    margin-top: 60px;
+    gap: 20px;
+}
+
+.flight-list {
+    width: 60%;
+}
+
+.flight-detail {
+    width: 40%;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flight-item .brief-info {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--dark-text);
+    border-radius: 4px;
+    height: 68px;
+}
+
+.flight-item {
+    display: flex;
+    gap: 12px;
+    font-weight: 600;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flight-item + .flight-item {
+    margin-top: 12px;
+}
+
+.flight-item .class.chosen {
+
+}
+
+.flight-item .class-wrapper {
+    height: 68px;
+    flex: 1;
+    width: auto;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    position: relative;
+    cursor: pointer;
+}
+
+.class-wrapper input:checked + .class {
+    border: 2px solid currentColor;
+    box-shadow: 0 0 10px 2px currentColor;
+}
+
+.class-wrapper .class {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: #cccccc;
+}
+
+.class-wrapper input {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+}
+
+.flight-item .luxury {
+    background-color: var(--gold-bg);
+    color: var(--gold-text);
+}
+
+.flight-item .classic {
+    background-color: var(--main-bg);
+    color: var(--dark-text);
+}
+
+.class-wrapper.sold {
+    pointer-events: none !important;
+}
+
+.flight-item .class.sold {
+    background-color: #eee;
+    color: #333;
+
+}
+
+.flight-item .class.sold::before {
+    content: 'Không đủ vé';
+    background-color: #333;
+    color: #eee;
+}
+
+.flight-item .class::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 18px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 4px 0 4px 0;
+}
+
+.flight-item .luxury::before {
+    content: 'Luxury';
+    color: var(--white);
+    background-color: var(--gold-text);
+}
+
+.flight-item .classic::before {
+    content: 'Classic';
+    color: var(--white);
+    background-color: var(--dark-bg);
+}
