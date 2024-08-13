@@ -167,3 +167,78 @@ footer h4 {
 .custom-file-input:active::before {
     color: var(--main-bg);
 }
+
+/* flight detail*/
+.flight-detail .station .path {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 12px 0 24px;
+    position: relative;
+}
+
+.flight-detail .station .between {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 2px;
+    gap: 2px;
+}
+
+.flight-detail .station .between i {
+    font-size: 14px;
+}
+
+.flight-detail .station .code {
+    font-weight: 600;
+}
+
+.flight-detail .station .between::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    border-top: 1px dashed #333;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.flight-detail h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.flight-detail .termination h3 {
+    margin-top: 12px;
+}
+
+.flight-detail .price {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.flight-detail .price-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flight-detail .price-item span {
+    font-weight: 600;
+}
+
+.flight-detail .price-item.total {
+    border-top: 1px solid #ccc;
+    padding-top: 8px;
+}
+
+.flight-detail .price-item.total span {
+    color: red;
+}
