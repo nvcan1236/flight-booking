@@ -5,22 +5,19 @@ from sqlalchemy.orm import relationship
 from flask_login import UserMixin
 from enum import Enum as MyEnum
 
-
-class UserRole(MyEnum):
-    CUSTOMER = "Khách hàng"
-    EMPLOYEE = "Nhân viên bán vé"
-    ADMIN = "Quản trị viên"
-
-
 class GenderEnum(MyEnum):
     NAM = 'Nam'
     NU = 'Nữ'
     OTHER = 'Khác'
 
-
 class BaseModel(db.Model):
     __abstract__ = True
     id = Column(Integer, primary_key=True, autoincrement=True)
+
+class UserRole(MyEnum):
+    CUSTOMER = "Khách hàng"
+    EMPLOYEE = "Nhân viên bán vé"
+    ADMIN = "Quản trị viên"
 
 
 class SanBay(BaseModel):
@@ -33,15 +30,6 @@ class SanBay(BaseModel):
     def __str__(self):
         return self.name
 
-
-class MayBay(BaseModel):
-    name = Column(String(50), nullable=False, unique=True)
-    chuyenbays = relationship('ChuyenBay', backref='maybay', lazy=True)
-
-    def __str__(self):
-        return self.name
-
-
 class TuyenBay(BaseModel):
     name = Column(String(100), nullable=False)
     sanBayKhoiHanh_id = Column(Integer, ForeignKey(SanBay.id), nullable=False)
@@ -50,6 +38,13 @@ class TuyenBay(BaseModel):
 
     def __str__(self):
         return self.sanbaydi.name + ' - ' + self.sanbayden.name
+    
+class MayBay(BaseModel):
+    name = Column(String(50), nullable=False, unique=True)
+    chuyenbays = relationship('ChuyenBay', backref='maybay', lazy=True)
+
+    def __str__(self):
+        return self.name
 
 
 class ChuyenBay(BaseModel):
@@ -86,20 +81,6 @@ class HangVe(BaseModel):
     def __str__(self):
         return self.name
 
-
-class Ghe(BaseModel):
-    chuyenbay_id = Column(Integer, ForeignKey(ChuyenBay.id), nullable=False)
-    hangve_id = Column(Integer, ForeignKey(HangVe.id), nullable=False)
-    so_luong = Column(Integer, default=True)
-
-
-class DungChan(BaseModel):
-    sanbay_id = Column(ForeignKey(SanBay.id), primary_key=True)
-    chuyenbay_id = Column(ForeignKey(ChuyenBay.id), primary_key=True)
-    thoi_gian_dung = Column(Float)
-    ghi_chu = Column(String(200))
-
-
 class Nguoi(BaseModel):
     name = Column(String(50), nullable=False)
     phone = Column(String(50), unique=True)
@@ -116,6 +97,17 @@ class NguoiDung(Nguoi, UserMixin):
     role = Column(Enum(UserRole), default=UserRole.CUSTOMER)
     hoadons = relationship('HoaDon', backref='nhanvien', lazy=True, foreign_keys='HoaDon.nguoi_thanh_toan_id')
 
+class Ghe(BaseModel):
+    chuyenbay_id = Column(Integer, ForeignKey(ChuyenBay.id), nullable=False)
+    hangve_id = Column(Integer, ForeignKey(HangVe.id), nullable=False)
+    so_luong = Column(Integer, default=True)
+
+
+class DungChan(BaseModel):
+    sanbay_id = Column(ForeignKey(SanBay.id), primary_key=True)
+    chuyenbay_id = Column(ForeignKey(ChuyenBay.id), primary_key=True)
+    thoi_gian_dung = Column(Float)
+    ghi_chu = Column(String(200))
 
 class HanhKhach(Nguoi):
     la_nguoi_lon = Column(Integer, default=1)
