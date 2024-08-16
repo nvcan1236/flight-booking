@@ -377,3 +377,80 @@ footer h4 {
 .flight-detail .price-item.total span {
     color: red;
 }
+/* payment */
+.payment {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    width: 100%;
+}
+
+.payment .payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 60%;
+    padding: 20px 40px;
+
+}
+
+.payment button {
+    margin-top: 16px;
+}
+
+.payment .bill {
+    padding: 20px 40px;
+    flex: 1
+}
+
+.payment .bill ul {
+    margin-top: 60px;
+}
+
+.payment .bill li {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.payment .bill .qty {
+    font-weight: 600;
+}
+
+.payment .bill .total {
+    padding-top: 12px;
+    border-top: 1px dashed #ccc;
+}
+
+.payment .bill .money {
+    font-weight: 600;
+    color: red;
+}
+
+.payment .card-img img {
+    width: 100%;
+}
+
+.payment .date-cvv {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* result*/
+.payment-result {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+    padding: 60px;
+}
+
+.payment-result img {
+    width: 300px;
+    height: 300px;
+}
+
+.payment-result button {
+    margin-top: 40px;
+}
