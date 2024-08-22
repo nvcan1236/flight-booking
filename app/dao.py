@@ -34,3 +34,42 @@ def search_flight(from_code, to_code, date=None, ready=False):
             return ds_chuyenbay.all()
     else:
         return []
+
+
+def get_user_by_id(user_id):
+    return NguoiDung.query.get(user_id)
+
+
+def check_exist_user(username):
+    user = NguoiDung.query.filter(NguoiDung.username.__eq__(username.strip())).first()
+    if user:
+        return True
+    else:
+        return False
+
+
+def create_user(username, email, password, name, avatar=None):
+    u = NguoiDung()
+    u.name = name
+    u.email = email
+    u.username = username
+    u.password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    if avatar:
+        avatar_result = uploader.upload(avatar)
+        u.avatar = avatar_result['secure_url']
+
+    db.session.add(u)
+    db.session.commit()
+
+
+def check_user(username, password):
+    password = str(hashlib.md5(password.strip().encode('utf-8')).hexdigest())
+    u = NguoiDung.query.filter(NguoiDung.username.__eq__(username.strip())).first()
+
+    if u:
+        if u.password == password:
+            return u
+        else:
+            raise Exception("Sai mật khẩu!!!")
+    else:
+        raise Exception("Người dùng không tồn tại")
