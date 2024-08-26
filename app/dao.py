@@ -70,6 +70,28 @@ def get_stats(from_date=None, to_date=None):
 
     return result
 
+def get_airports():
+    return SanBay.query.all()
+
+
+def get_scheduled_fllights():
+    scheduled_fllights = ChuyenBay.query.filter(ChuyenBay.san_sang.__eq__(False))
+    return scheduled_fllights.all()
+
+
+def get_airport_by_id(id):
+    return SanBay.query.get(id)
+
+
+def get_airport_id(airport_name):
+    airport = SanBay.query.filter(SanBay.name.__eq__(airport_name)).first()
+    return airport.id
+
+
+def get_airport_name(id):
+    return SanBay.query.get(id).name
+
+
 def get_flight_by_id(id=None):
     return ChuyenBay.query.get(id)
 
