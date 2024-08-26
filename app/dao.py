@@ -73,3 +73,35 @@ def check_user(username, password):
             raise Exception("Sai mật khẩu!!!")
     else:
         raise Exception("Người dùng không tồn tại")
+
+
+def get_airports():
+    return SanBay.query.all()
+
+
+def get_scheduled_fllights():
+    scheduled_fllights = ChuyenBay.query.filter(ChuyenBay.san_sang.__eq__(False))
+    return scheduled_fllights.all()
+
+
+def get_airport_by_id(id):
+    return SanBay.query.get(id)
+
+
+def get_ticket_class_by_id(id=None):
+    return HangVe.query.get(id)
+
+
+def create_ticket(flight_id, ticket_class_id, customer_id, bill_id):
+    t = Ve(hangve_id=ticket_class_id, chuyenbay_id=flight_id, hanhkhach_id=customer_id, hoadon_id=bill_id)
+    flight = get_flight_by_id(flight_id)
+    ticket_class = get_ticket_class_by_id(ticket_class_id)
+    t.tong_tien_ve = flight.gia + ticket_class.gia
+
+    ghe = Ghe.query.filter(Ghe.chuyenbay_id.__eq__(flight_id),
+                           Ghe.hangve_id.__eq__(ticket_class_id)).first()
+    ghe.so_luong -= 1
+    db.session.add(t)
+    db.session.add(ghe)
+    db.session.commit()
+    return t
