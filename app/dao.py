@@ -6,6 +6,7 @@ from app import db, utils
 from app.models import SanBay, TuyenBay, ChuyenBay, HangVe, NguoiDung, HanhKhach, Ve, HoaDon, QuyDinh, Ghe, DungChan
 from cloudinary import uploader
 
+
 def load_regulation():
     regulations = {
         'Thời gian bay tối thiểu (phút)': 30,
@@ -69,6 +70,7 @@ def get_stats(from_date=None, to_date=None):
             .all()
 
     return result
+
 
 def get_airports():
     return SanBay.query.all()
@@ -175,6 +177,28 @@ def get_airport_by_id(id):
 
 def get_ticket_class_by_id(id=None):
     return HangVe.query.get(id)
+
+
+def create_ticket(flight_id, ticket_class_id, customer_id, bill_id):
+    t = Ve(hangve_id=ticket_class_id, chuyenbay_id=flight_id, hanhkhach_id=customer_id, hoadon_id=bill_id)
+    flight = get_flight_by_id(flight_id)
+    ticket_class = get_ticket_class_by_id(ticket_class_id)
+    t.tong_tien_ve = flight.gia + ticket_class.gia
+
+    ghe = Ghe.query.filter(Ghe.chuyenbay_id.__eq__(flight_id),
+                           Ghe.hangve_id.__eq__(ticket_class_id)).first()
+    ghe.so_luong -= 1
+    db.session.add(t)
+    db.session.add(ghe)
+    db.session.commit()
+    return t
+
+
+def create_bill(nguoi_thanh_toan_id, tong_hoa_don=0):
+    b = HoaDon(nguoi_thanh_toan_id=nguoi_thanh_toan_id, tong_hoa_don=tong_hoa_don)
+    db.session.add(b)
+    db.session.commit()
+    return b
 
 
 def create_ticket(flight_id, ticket_class_id, customer_id, bill_id):
