@@ -1,15 +1,3 @@
-from datetime import datetime
-from flask_admin import Admin, BaseView, expose
-from flask_admin.contrib.sqla import ModelView
-from app.models import SanBay, TuyenBay, MayBay, ChuyenBay, Ve, HangVe, Ghe, DungChan, NguoiDung, HoaDon, UserRole, \
-    QuyDinh
-from app import db, app, dao, utils
-from flask_login import current_user, logout_user
-from flask import redirect, request, flash
-from app.settings import Regulation
-
-admin = Admin(app=app, template_mode='bootstrap4', name='TOCA Admin')
-
 class StatsView(AdminBaseView):
     @expose('/', methods=['post', 'get'])
     def stats(self):
