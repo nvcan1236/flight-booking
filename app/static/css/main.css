@@ -84,6 +84,23 @@ footer h4 {
     margin-inline: auto;
 
 }
+
+.top-picture {
+    width: 100%;
+    height: 400px;
+}
+
+.top-picture.home {
+    height: 600px;
+}
+
+.top-picture img {
+    width: 100%;
+    height: 100%;
+    object-position: 0% 10%;
+    object-fit: cover;
+}
+
 .search-flight {
     margin-top: -100px;
     background-color: #fff;
@@ -212,89 +229,6 @@ footer h4 {
     padding: 8px;
 }
 
-/* profile*/
-
-.profile {
-    padding: 50px 100px;
-    display: flex;
-    justify-content: space-around;
-}
-
-.profile .avatar {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    padding: 30px 40px;
-}
-
-.profile .avatar img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-}
-
-.profile .infor {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 600px;
-    padding: 30px 40px;
-}
-
-.profile .label {
-    font-weight: 600;
-}
-
-.profile .value {
-    border: 1px solid #ccc;
-    text-align: right;
-}
-
-.profile .value[readonly] {
-    border: none;
-
-}
-
-.profile .infor > div {
-    padding: 4px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.custom-file-input {
-    color: transparent;
-}
-
-.custom-file-input::-webkit-file-upload-button {
-    visibility: hidden;
-}
-
-.custom-file-input::before {
-    content: 'Cập nhật avatar';
-    display: inline-block;
-    width: 100%;
-    color: var(--dark-bg);
-    padding: 8px 16px;
-    background-color: var(--light-bg);
-    border-radius: 3px;
-    outline: none;
-    white-space: nowrap;
-    -webkit-user-select: none;
-    cursor: pointer;
-    font-size: 14px;
-    text-align: center;
-}
-
-.custom-file-input:active {
-    outline: 0;
-}
-
-.custom-file-input:active::before {
-    color: var(--main-bg);
-}
 /*select flight*/
 
 .page-nav {
@@ -505,6 +439,62 @@ footer h4 {
 .flight-detail .price-item.total span {
     color: red;
 }
+
+/* passenger form*/
+
+.passenger-form {
+    margin-top: 20px;
+    padding: 40px 120px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--light-bg);
+}
+
+.passenger-info {
+    margin-top: 60px;
+}
+
+.personal {
+    padding: 20px 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.personal > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact {
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.personal h3,
+.contact h3 {
+    margin-top: 16px;
+    font-size: 18px;
+}
+
+#nationality {
+    width: 100%;
+}
+
+.passenger-info .type,
+.passenger-info .gender {
+    width: 40%;
+    display: flex;
+    gap: 12px;
+}
+
+.contact > div {
+    display: flex;
+    justify-content: space-between;
+}
+
 /* payment */
 .payment {
     display: flex;
@@ -581,4 +571,168 @@ footer h4 {
 
 .payment-result button {
     margin-top: 40px;
+}
+
+.history {
+    margin-top: -200px;
+    background-color: var(--white);
+    padding: 40px 80px;
+    width: 1200px;
+    margin-inline: auto;
+    position: relative;
+    z-index: 1;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.history h3 {
+    margin-top: 24px;
+}
+
+.ticket-list {
+    margin-top: 60px;
+}
+
+.ticket-item .header,
+.ticket-item .footer {
+    padding: 12px 24px;
+    color: var(--white);
+    text-transform: uppercase;
+}
+
+.ticket-item.classic .header,
+.ticket-item.classic .footer {
+    background-color: var(--dark-bg);
+}
+
+.ticket-item.luxury .header,
+.ticket-item.luxury .footer {
+    background-color: var(--gold-text);
+}
+
+.ticket-item {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ticket-item.classic {
+    border: 2px solid var(--dark-bg);
+}
+
+.ticket-item.luxury {
+    border: 2px solid var(--gold-text);
+}
+
+.ticket-item .body {
+    display: flex;
+    justify-content: stretch;
+    padding: 30px 40px;
+}
+
+.ticket-item .body > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.ticket-item .customer-info {
+    width: 30%;
+    padding: 12px 24px;
+
+}
+
+.ticket-item .from,
+.ticket-item .to {
+    width: 35%;
+    padding: 0 30px;
+    border-left: 2px dashed #ccc;
+}
+
+/* profile*/
+
+.profile {
+    padding: 50px 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.profile .avatar {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    padding: 30px 40px;
+}
+
+.profile .avatar img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.profile .infor {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 600px;
+    padding: 30px 40px;
+}
+
+.profile .label {
+    font-weight: 600;
+}
+
+.profile .value {
+    border: 1px solid #ccc;
+    text-align: right;
+}
+
+.profile .value[readonly] {
+    border: none;
+
+}
+
+.profile .infor > div {
+    padding: 4px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-file-input {
+    color: transparent;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Cập nhật avatar';
+    display: inline-block;
+    width: 100%;
+    color: var(--dark-bg);
+    padding: 8px 16px;
+    background-color: var(--light-bg);
+    border-radius: 3px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+}
+
+.custom-file-input:active {
+    outline: 0;
+}
+
+.custom-file-input:active::before {
+    color: var(--main-bg);
 }
