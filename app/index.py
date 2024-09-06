@@ -1,9 +1,12 @@
+import hashlib
+
 from cloudinary import uploader
 from flask import render_template, session
 from flask_login import login_user, login_required
 
 from admin import *
 from app import login as app_login
+from app.dao import check_exist_user
 from app.settings import Regulation as RegulationEnum
 
 
@@ -84,7 +87,6 @@ def select_flight():
                 RegulationEnum.ORDER_TIME.value))
             if utils.check_date(datetime.now(), flight.gio_bay) <= dao.get_regulation_value(
                     RegulationEnum.ORDER_TIME.value):
-
                 raise Exception('Ngoài thời gian cho phép đặt vé!!')
             session['order']['flight'] = flight.id
             session['order']['ticket-class'] = ticket_class.id
@@ -274,5 +276,26 @@ def logout():
     return redirect('/')
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+with app.app_context():
+    if __name__ == '__main__':
+        if not check_exist_user('admin'):
+            u = NguoiDung()
+            u.name = "admin"
+            u.email = None
+            u.username = "admin"
+            u.password = str(hashlib.md5("admin".encode('utf-8')).hexdigest())
+            u.role = UserRole.ADMIN
+            db.session.add(u)
+            db.session.commit()
+
+        if not check_exist_user('nhanvien'):
+            u = NguoiDung()
+            u.name = "nhanvien"
+            u.email = None
+            u.username = "nhanvien"
+            u.password = str(hashlib.md5("nhanvien".encode('utf-8')).hexdigest())
+            u.role = UserRole.EMPLOYEE
+            db.session.add(u)
+            db.session.commit()
+
+        app.run(debug=True)

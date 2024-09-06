@@ -11,6 +11,7 @@
                         {% for f in flight_list %}
                             <li class="flight-item">
                                 <div class="brief-info">
+                                    <span >{{ f.gio_bay.day }}-{{ f.gio_bay.month }}-{{ f.gio_bay.year }}</span>
                                     <span>{{ f.gio_bay.hour }}:{{ f.gio_bay.minute }} đến {{ f.gio_den.hour }}:{{ f.gio_den.minute }}</span>
                                     <span>{{ f.maybay.name }}</span>
                                 </div>

@@ -191,6 +191,7 @@ def check_exist_user(username):
     else:
         return False
 
+
 def create_user(username, email, password, name, avatar=None):
     u = NguoiDung()
     u.name = name
